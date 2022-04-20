@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { TileComponent } from './components/tile/tile.component';
 import { GridComponent } from './components/grid/grid.component';
 import { CellComponent } from './components/cell/cell.component';
+import { EventHandlerDirective } from './directives/event-handler.directive';
 
 @NgModule({
   declarations: [
@@ -12,6 +13,7 @@ import { CellComponent } from './components/cell/cell.component';
     TileComponent,
     GridComponent,
     CellComponent,
+    EventHandlerDirective,
   ],
   imports: [BrowserModule, BrowserAnimationsModule],
   providers: [],
