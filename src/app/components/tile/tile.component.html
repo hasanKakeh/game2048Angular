@@ -1,0 +1,12 @@
+<div
+  #elementRef
+  @show
+  class="tile"
+  [style.--x]="tile.x"
+  [style.--y]="tile.y"
+  [style.--background-lightness]="backgroundLightness"
+  [style.--background-hue]="backgroundHue"
+  
+>
+  {{ tile.value }}
+</div>

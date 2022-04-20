@@ -1,0 +1,42 @@
+.screen {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.result {
+  position: absolute;
+  top: 3vmin;
+  display: flex;
+  align-items: center;
+  gap: 5vmin;
+  font-size: 5vmin;
+  &-score--game,
+  &-score--best {
+    background: whitesmoke;
+    padding: 0.2rem;
+    border-radius: 8px;
+  }
+}
+.reset {
+  &-btn {
+    transition: 0.2s all;
+    background: hsl(34, 100%, 90%);
+    cursor: pointer;
+    border: 0.6vmin solid;
+    border-radius: 8px;
+    padding: 0.2rem;
+    span {
+      font-size: 4vmin;
+    }
+    &:hover {
+      background-color: hsl(34, 100%, 80%);
+      transform: scale(1.1);
+    }
+    &:active {
+      transform: translateY(-2px);
+    }
+  }
+}

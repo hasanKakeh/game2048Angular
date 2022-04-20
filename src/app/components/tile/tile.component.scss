@@ -1,0 +1,30 @@
+.tile {
+  --background-lightness: 2%;
+  --background-hue: 200;
+  top: calc(
+    ((var(--cell_gap) + var(--cell_size)) * var(--y)) + var(--cell_gap)
+  );
+  // top: calc((var(--cell_gap) + var(--cell_size)) * $y + var(--cell_gap));
+  left: calc(
+    ((var(--cell_gap) + var(--cell_size)) * var(--x)) + var(--cell_gap)
+  );
+  position: absolute;
+  background-color: hsl(
+    var(--background-hue),
+    100%,
+    var(--background-lightness)
+  );
+  width: var(--cell_size);
+  height: var(--cell_size);
+  // text-align: center;
+  display: flex;
+  color: hsl(0, 0%, 5%);
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 1vmin;
+  font-weight: bold;
+
+  transition: 200ms ease-in-out;
+  transition-property: left, right, top, bottom;
+}

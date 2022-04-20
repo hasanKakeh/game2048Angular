@@ -1,0 +1,16 @@
+<div
+  class="board"
+  [style.--grid_size]="GRID_SIZE"
+  [style.--cell_size]="CELL_SIZE"
+  [style.--cell_gap]="CELL_GAP"
+>
+  <app-cell *ngFor="let cell of cells" style="display: contents"></app-cell>
+  <app-tile
+    *ngFor="let tile of tiles"
+    [tile]="tile"
+    style="display: contents"
+  ></app-tile>
+  <div @gameOverAnimate  class="game-over" *ngIf="(isGameOver|async)">
+    <p>Game Over</p>
+  </div>
+</div>

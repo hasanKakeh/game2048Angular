@@ -1,0 +1,32 @@
+.board {
+  display: grid;
+  grid-template-columns: repeat(var(--grid_size), var(--cell_size));
+  grid-template-rows: repeat(var(--grid_size), var(--cell_size));
+  background-color: lightgray;
+  gap: var(--cell_gap);
+  padding: 2vmin;
+  position: relative;
+}
+.game-over {
+  position: absolute;
+  //animation:1s show;
+  p {
+    position: absolute;
+    height: max-content;
+    margin-top: 20vmin;
+  }
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  background-color: rgb(255, 255, 255, 0.68);
+  display: flex;
+  justify-content: center;
+}
+// @keyframes show {
+//   0% {
+//     opacity: 0;
+//   }
+//   100% {
+//     opacity: 1;
+//   }
+// }
