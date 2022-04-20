@@ -86,14 +86,17 @@ export class GridComponent implements OnInit, OnDestroy {
       if (this.touchStartX > this.touchEndX) await this.logicService.moveLeft();
       if (this.touchEndX > this.touchStartX)
         await this.logicService.moveRight();
+      this.logicService.mergeTiles();
+      this.logicService.generateNewTile();
+      this.logicService.isGameOver();
     }
     if (dy > dx) {
       if (this.touchStartY > this.touchEndY) await this.logicService.moveUp();
       if (this.touchEndY > this.touchStartY) await this.logicService.moveDown();
+      this.logicService.mergeTiles();
+      this.logicService.generateNewTile();
+      this.logicService.isGameOver();
     }
-    this.logicService.mergeTiles();
-    this.logicService.generateNewTile();
-    this.logicService.isGameOver();
   }
 
   addEventListener() {
@@ -105,7 +108,6 @@ export class GridComponent implements OnInit, OnDestroy {
       this.touchStartY = e.changedTouches[0].clientY;
     });
     this.renderer.listen(document, 'touchend', (e: TouchEvent) => {
-      e.preventDefault();
       this.touchEndX = e.changedTouches[0].clientX;
       this.touchEndY = e.changedTouches[0].clientY;
       this.handleTouch();

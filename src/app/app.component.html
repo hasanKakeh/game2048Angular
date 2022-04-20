@@ -8,11 +8,11 @@
     </div>
 
     <div class="reset">
-      <button (click)="logicService.resetGame()" class="reset-btn">
+      <button (click)="logicService.resetGame()" (touchstart)="logicService.resetGame()" class="reset-btn">
         <span>New Game</span>
       </button>
     </div>
   </div>
   <app-grid></app-grid>
-  
+
 </div>
