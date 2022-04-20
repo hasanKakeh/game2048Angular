@@ -94,8 +94,6 @@ export class GridComponent implements OnInit, OnDestroy {
     this.logicService.mergeTiles();
     this.logicService.generateNewTile();
     this.logicService.isGameOver();
-
-    this.waitLastEvent = false;
   }
 
   addEventListener() {
@@ -107,9 +105,10 @@ export class GridComponent implements OnInit, OnDestroy {
       this.touchStartY = e.changedTouches[0].clientY;
     });
     this.renderer.listen(document, 'touchend', (e: TouchEvent) => {
+      e.preventDefault();
       this.touchEndX = e.changedTouches[0].clientX;
       this.touchEndY = e.changedTouches[0].clientY;
-      this.handleTouch()
+      this.handleTouch();
     });
   }
 }
