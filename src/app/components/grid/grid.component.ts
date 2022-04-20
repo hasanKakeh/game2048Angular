@@ -12,10 +12,7 @@ import utility from '../../utility';
   styleUrls: ['./grid.component.scss'],
   animations: [
     trigger('gameOverAnimate', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('1s ease-in-out'),
-      ]),
+      transition(':enter', [style({ opacity: 0 }), animate('1s ease-in-out')]),
     ]),
   ],
 })
@@ -26,6 +23,10 @@ export class GridComponent implements OnInit, OnDestroy {
   cells: Cell[];
   tiles: Tile[];
   waitLastEvent: boolean = false;
+  touchStartX: number;
+  touchStartY: number;
+  touchEndX: number;
+  touchEndY: number;
   isGameOver: any;
   destroy = new Subject();
   constructor(private renderer: Renderer2, private logicService: LogicService) {
@@ -77,9 +78,38 @@ export class GridComponent implements OnInit, OnDestroy {
 
     this.waitLastEvent = false;
   }
+  async handleTouch() {
+    const dx = Math.abs(this.touchStartX - this.touchEndX);
+    const dy = Math.abs(this.touchStartY - this.touchEndY);
+    console.log({ dx, dy });
+    if (dx > dy) {
+      if (this.touchStartX > this.touchEndX) await this.logicService.moveLeft();
+      if (this.touchEndX > this.touchStartX)
+        await this.logicService.moveRight();
+    }
+    if (dy > dx) {
+      if (this.touchStartY > this.touchEndY) await this.logicService.moveUp();
+      if (this.touchEndY > this.touchStartY) await this.logicService.moveDown();
+    }
+    this.logicService.mergeTiles();
+    this.logicService.generateNewTile();
+    this.logicService.isGameOver();
+
+    this.waitLastEvent = false;
+  }
+
   addEventListener() {
     this.renderer.listen(document, 'keydown', (e: KeyboardEvent) => {
       if (!this.waitLastEvent) this.handleInput(e);
+    });
+    this.renderer.listen(document, 'touchstart', (e: TouchEvent) => {
+      this.touchStartX = e.changedTouches[0].clientX;
+      this.touchStartY = e.changedTouches[0].clientY;
+    });
+    this.renderer.listen(document, 'touchend', (e: TouchEvent) => {
+      this.touchEndX = e.changedTouches[0].clientX;
+      this.touchEndY = e.changedTouches[0].clientY;
+      this.handleTouch()
     });
   }
 }
