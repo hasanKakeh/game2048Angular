@@ -79,7 +79,7 @@ export class GridComponent implements OnInit, OnDestroy {
     this.waitLastEvent = false;
   }
   async handleTouch() {
-    this.waitLastEvent=true
+    this.waitLastEvent = true;
     const dx = Math.abs(this.touchStartX - this.touchEndX);
     const dy = Math.abs(this.touchStartY - this.touchEndY);
     console.log({ dx, dy });
@@ -112,7 +112,7 @@ export class GridComponent implements OnInit, OnDestroy {
     this.renderer.listen(document, 'touchend', (e: TouchEvent) => {
       this.touchEndX = e.changedTouches[0].clientX;
       this.touchEndY = e.changedTouches[0].clientY;
-      
+
       if (!this.waitLastEvent) this.handleTouch();
     });
   }
