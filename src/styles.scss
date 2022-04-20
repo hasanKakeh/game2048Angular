@@ -14,4 +14,13 @@ body {
 .sortable-handler {
   touch-action: none;
 }
-body, html { overflow:hidden; }
+body,
+html {
+  overflow: hidden;
+}
+body {
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+}
