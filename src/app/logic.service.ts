@@ -93,8 +93,11 @@ export class LogicService {
   }
 
   slideTiles(cells: Array<any>) {
+    const flatMap = (f: Function, xs: any[]) =>
+      xs.reduce((r, x) => r.concat(f(x)), []);
+
     return Promise.all(
-      cells.flatMap((group: any) => {
+      flatMap((group: any) => {
         const promises = [];
         for (let i = 1; i < group.length; i++) {
           const cell = group[i];
@@ -115,7 +118,7 @@ export class LogicService {
           }
         }
         return promises;
-      })
+      }, cells)
     );
   }
   mergeTiles() {
@@ -161,7 +164,7 @@ export class LogicService {
       !this.canMoveLeft() &&
       !this.canMoveRight()
     ) {
-      this.isOver$.next(true)
+      this.isOver$.next(true);
       this.saveBestScore();
     }
   }
@@ -172,7 +175,7 @@ export class LogicService {
     return Number(localStorage.getItem('bestScore')) | 0;
   }
   resetGame() {
-    this.isOver$.next(false)
+    this.isOver$.next(false);
     this.tiles = [];
     this.cells = [];
     this.tiles$.next(this.tiles);
