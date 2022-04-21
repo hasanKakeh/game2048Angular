@@ -16,6 +16,7 @@ export class EventHandlerDirective {
 
   async handleInput(e: KeyboardEvent) {
     this.waitLastEvent = true;
+
     switch (e.key) {
       case 'ArrowUp':
         await this.logicService.moveUp();
@@ -30,6 +31,7 @@ export class EventHandlerDirective {
         await this.logicService.moveRight();
         break;
       default:
+        this.waitLastEvent = false;
         return;
     }
 
