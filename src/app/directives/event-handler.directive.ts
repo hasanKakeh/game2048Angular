@@ -61,7 +61,7 @@ export class EventHandlerDirective {
       this.logicService.generateNewTile();
       this.logicService.isGameOver();
     }
-    this.waitLastEvent = false;
+  
   }
 
   addEventListener() {
@@ -77,6 +77,7 @@ export class EventHandlerDirective {
       this.touchEndY = e.changedTouches[0].clientY;
 
       if (!this.waitLastEvent) this.handleTouch();
+      this.waitLastEvent = false;
     });
   }
 }
